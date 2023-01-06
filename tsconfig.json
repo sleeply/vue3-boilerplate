@@ -1,0 +1,17 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["*.d.ts", "src/**/*", "src/**/*.vue"],
+  "lib": ["DOM", "DOM.Iterable", "ESNext", "ESNext.AsyncIterable"],
+  "compilerOptions": {
+    "target": "ES6",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@core/*": ["src/core/*"]
+    },
+    "types": ["node"]
+  },
+  "exclude": ["node_modules"]
+}

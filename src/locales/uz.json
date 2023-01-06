@@ -1,0 +1,17 @@
+{
+  "hello": "Salom dunyo!",
+  "short_months": {
+    "january": "Янв",
+    "february": "Фев",
+    "march": "Март",
+    "april": "Апр",
+    "may": "Май",
+    "june": "Июнь",
+    "july": "Июль",
+    "august": "Авг",
+    "september": "Сен",
+    "october": "Окт",
+    "november": "Ноя",
+    "december": "Дек"
+  }
+}

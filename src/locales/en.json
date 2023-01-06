@@ -1,0 +1,31 @@
+{
+  "hello": "Hello World!",
+  "months": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "short_months": {
+    "january": "Янв",
+    "february": "Фев",
+    "march": "Март",
+    "april": "Апр",
+    "may": "Май",
+    "june": "Июнь",
+    "july": "Июль",
+    "august": "Авг",
+    "september": "Сен",
+    "october": "Окт",
+    "november": "Ноя",
+    "december": "Дек"
+  }
+}
