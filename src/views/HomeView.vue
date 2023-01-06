@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 // @ts-ignore
-import HomeIndex from '@/features/Home/HomeIndex.vue'
+import HomeIndex from '@/screens/Home/HomeIndex.vue'
 import { ref } from 'vue-demi'
 const opener = ref<boolean>(false)
 const open = () => {
