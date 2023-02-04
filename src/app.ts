@@ -3,7 +3,7 @@ import { createSSRApp, createApp } from "vue";
 import App from "./App.vue";
 import createRouter from "./router/index";
 import { i18n } from "./i18n";
-import type { InI18nRoute } from "./../types.d";
+import type { Ii18nRoute } from "./../types.d";
 import type { LocationQueryRaw, RouteParams } from "vue-router";
 
 export function buildApp() {
@@ -11,7 +11,7 @@ export function buildApp() {
   const pinia = createPinia();
   const router = createRouter();
 
-  const i18nRoute = (to: InI18nRoute) => {
+  const i18nRoute = (to: Ii18nRoute) => {
     return {
       ...to,
       name: `${i18n.global.locale.value || i18n.global.locale}_${to.name}`,

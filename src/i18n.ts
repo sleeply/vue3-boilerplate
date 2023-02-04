@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import { nextTick, ref, type HtmlHTMLAttributes } from "vue";
+import { nextTick } from "vue";
 import { SUPPORT_LOCALES } from "@/utils/constants";
 
 export const DEFAULT_LOCALE = "ru";
@@ -32,7 +32,7 @@ export function getBrowserLocale(options = {}) {
   }
 }
 
-export async function loadLocaleMessages(i18n: any, locale: string) {
+export async function loadLocaleMessages(i18n:any, locale: string) {
   // load locale messages with dynamic import
   const messages = await import(`./locales/${locale}.json`);
 
@@ -142,10 +142,7 @@ export function setI18nLanguage(i18n: any, locale: any) {
    * axios.defaults.headers.common['Accept-Language'] = locale
    */
   try {
-    // document.querySelector("html").setAttribute("lang", locale);
-    // document
-    //   .querySelector<HTMLElement>("html")
-    //   ?.setAttribute<HtmlHTMLAttributes>("lang", locale);
+    document.querySelector("html")?.setAttribute("lang", locale);
   } catch {
     console.log();
   }

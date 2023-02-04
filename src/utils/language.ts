@@ -1,14 +1,12 @@
-// @ts-check
-
 import { i18n } from "../i18n";
 import { useRouter } from "vue-router";
 import { SUPPORT_LOCALES } from "@/utils/constants";
 
 export function useLanguage() {
   const router = useRouter();
-  const switchLanguage = async (inner = false) => {
+  const switchLanguage = async (inner:any = false) => {
     let defaultName;
-    const to: any = router.resolve({});
+    const to:any = router.resolve({});
     SUPPORT_LOCALES.forEach((locale) => {
       if (to.name.slice(0, locale.length) === locale) {
         defaultName = to.name.slice(locale.length + 1, to.name.length);
@@ -38,7 +36,7 @@ export function useLanguage() {
     }
   };
 
-  const i18nRoute = (to: any, lang = null) => {
+  const i18nRoute = (to:any, lang = null) => {
     lang =
       lang === null ? i18n.global.locale.value || i18n.global.locale : lang;
     return {

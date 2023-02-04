@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
-import EnvironmentPlugin from "vite-plugin-environment";
 
 const virtualFile = "@virtual-file";
 const virtualId = "\0" + virtualFile;
@@ -18,6 +17,9 @@ globalThis.__vite_test_dirname = __dirname;
 export default defineConfig(({ mode, command, ssrBuild }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   return {
+    define: {
+      "process.env": process.env,
+    },
     base,
     plugins: [
       vue(),
@@ -130,14 +132,7 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
     build: {
       minify: true,
     },
-    ssr: {
-      noExternal: [
-        // this package has uncompiled .vue files
-        "@vitejs/test-example-external-component",
-      ],
-    },
-    optimizeDeps: {
-      exclude: ["@vitejs/test-example-external-component"],
-    },
+    ssr: {},
+    optimizeDeps: {},
   };
 });

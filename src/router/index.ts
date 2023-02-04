@@ -19,12 +19,7 @@ const childRoutes = [
   {
     path: "",
     name: "Home",
-    component: () => import("@/views/HomeView.vue"),
-  },
-  {
-    path: "about",
-    name: "About",
-    component: () => import("@/views/AboutView.vue"),
+    component: () => import("@/views/Home/index.vue"),
   },
 ];
 

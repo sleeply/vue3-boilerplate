@@ -1,14 +1,13 @@
-import { LocationQueryRaw, RouteParams } from "vue-router";
+import { LocationQueryRaw, RouteParams, RouteLocationRaw } from "vue-router";
 
-export interface InI18nRoute {
-    name: string;
-    params?: RouteParams;
-    query?: LocationQueryRaw;
-  }
-  
+export interface Ii18nRoute {
+  name: string;
+  params?: RouteParams;
+  query?: LocationQueryRaw;
+}
 
 declare module "vue" {
-  interface ComponentCustomProperties{
-    $i18nRoute:( route: InI18nRoute):RouteLocationRaw => void; 
+  interface ComponentCustomProperties {
+    $i18nRoute: (route: Ii18nRoute) => RouteLocationRaw
   }
 }
