@@ -4,9 +4,11 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import { config } from "dotenv";
 import Ip from "ip";
+import fetch from "node-fetch";
 
 config();
 
+global.fetch = fetch;
 const isTest = process.env.VITEST;
 
 export async function createServer(
