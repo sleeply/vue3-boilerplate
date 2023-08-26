@@ -6,8 +6,7 @@ const { i18n, switchLanguage, SUPPORT_LOCALES } = useLanguage();
 
 <template>
   <div>
-    <!-- <button> {{ i18n }} </button> -->
-    <button @click="switchLanguage()">lang {{}}</button>
+    <button @click="switchLanguage()">lang</button>
     <button
       v-for="(lang, index) in SUPPORT_LOCALES"
       :key="index"
@@ -18,6 +17,16 @@ const { i18n, switchLanguage, SUPPORT_LOCALES } = useLanguage();
     >
       {{ lang }}
     </button>
+
+    <RouterLink
+      :to="
+        $i18nRoute({
+          name: 'About'
+        })
+      "
+    >
+    about
+    </RouterLink>
   </div>
 </template>
 

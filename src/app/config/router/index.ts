@@ -2,26 +2,29 @@ import {
   createWebHistory,
   createMemoryHistory,
   createRouter,
+  RouteRecordRaw,
+  RouteLocationNormalized,
+  NavigationGuardNext
 } from "vue-router";
 import {
   DEFAULT_LOCALE,
   getBrowserLocale,
   i18n,
   loadLocaleMessages,
-  setI18nLanguage,
-} from "@/i18n";
+  setI18nLanguage
+} from "@/app/config/i18n/index";
 import { SUPPORT_LOCALES } from "@/utils/constants";
+import { HomeRoutes } from "./routes/home";
 
-const routes: any[] = [];
+interface IRoutes {
+  path: string;
+  children: RouteRecordRaw[];
+}
+
+const routes: IRoutes[] = [];
 const routeNames: string[] = [];
 
-const childRoutes = [
-  {
-    path: "",
-    name: "Home",
-    component: () => import("@/views/Home/index.vue"),
-  },
-];
+const childRoutes = [...HomeRoutes];
 
 let history = import.meta.env.SSR ? createMemoryHistory() : createWebHistory();
 
@@ -29,9 +32,9 @@ const checkIfArrayIsUnique = (myArray: string[]) => {
   return myArray.length === new Set(myArray).size;
 };
 
-const recursiveChildren = (locale: any, children: any): any => {
+const recursiveChildren = (locale: string, children: RouteRecordRaw[]): RouteRecordRaw[] => {
   if (!children || children.length === 0) {
-    return;
+    return [];
   }
 
   const recChildren: any = [];
@@ -40,9 +43,10 @@ const recursiveChildren = (locale: any, children: any): any => {
     recChildren.push({
       ...child,
       name: `${locale}_${child.name}`,
-      children: recursiveChildren(locale, child.children),
+      children: recursiveChildren(locale, child.children)
     });
   });
+
   return recChildren;
 };
 
@@ -52,19 +56,22 @@ SUPPORT_LOCALES.forEach((locale: string) => {
     // component: {
     //   template: "<router-view></router-view>",
     // },
-    children: recursiveChildren(locale, childRoutes),
+    children: recursiveChildren(locale, childRoutes)
   });
 });
 
-if (checkIfArrayIsUnique(routeNames))
-  throw new Error("Route names must be unique");
+if (checkIfArrayIsUnique(routeNames)) throw new Error("Route names must be unique");
 
 const isServer = typeof window === "undefined";
 
-const beforeEach = async (to: any, from: any, next: any) => {
+const beforeEach = async (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) => {
   if (!isServer) {
     window.scrollTo({
-      top: 0,
+      top: 0
     });
   }
 
@@ -102,7 +109,7 @@ const beforeEach = async (to: any, from: any, next: any) => {
 export default function () {
   const router = createRouter({
     history,
-    routes,
+    routes
   });
 
   router.beforeEach(beforeEach);

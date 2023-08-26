@@ -1,5 +1,5 @@
-import { i18n } from "../i18n";
-import { useRouter } from "vue-router";
+import { i18n } from "@/app/config/i18n/index";
+import { RouteLocationRaw, RouteRecordRaw, useRouter } from "vue-router";
 import { SUPPORT_LOCALES } from "@/utils/constants";
 
 export function useLanguage() {

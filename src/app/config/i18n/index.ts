@@ -1,5 +1,5 @@
-import { createI18n } from "vue-i18n";
-import { nextTick } from "vue";
+import { I18n, I18nOptions, createI18n } from "vue-i18n";
+import { Ref, WritableComputedRef, nextTick } from "vue";
 import { SUPPORT_LOCALES } from "@/utils/constants";
 
 export const DEFAULT_LOCALE = "ru";
@@ -13,9 +13,7 @@ export function getBrowserLocale(options = {}) {
       return window.location.pathname.substring(1, 3);
     }
     const navigatorLocale =
-      navigator?.languages !== undefined
-        ? navigator.languages[0]
-        : navigator.language;
+      navigator?.languages !== undefined ? navigator.languages[0] : navigator.language;
     if (!navigatorLocale) {
       return process.env.VUE_APP_I18N_FALLBACK_LOCALE || DEFAULT_LOCALE;
     }
@@ -32,8 +30,7 @@ export function getBrowserLocale(options = {}) {
   }
 }
 
-export async function loadLocaleMessages(i18n:any, locale: string) {
-  // load locale messages with dynamic import
+export async function loadLocaleMessages(i18n: I18n, locale: string) {
   const messages = await import(`./locales/${locale}.json`);
 
   i18n.global.setLocaleMessage(locale, messages);
@@ -65,7 +62,7 @@ export function setupI18n(
     globalInjection: true,
     silentTranslationWarn: true,
     pluralizationRules: {
-      ru: ruPlur,
+      ru: ruPlur
     },
     datetimeFormats: {
       en: {
@@ -75,8 +72,8 @@ export function setupI18n(
           day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
-        },
+          second: "2-digit"
+        }
       },
       ru: {
         long: {
@@ -85,8 +82,8 @@ export function setupI18n(
           day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
-        },
+          second: "2-digit"
+        }
       },
       uz: {
         long: {
@@ -95,31 +92,31 @@ export function setupI18n(
           day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
-        },
-      },
+          second: "2-digit"
+        }
+      }
     },
     numberFormats: {
       en: {
         currency: {
           style: "currency",
-          currency: "USD",
-        },
+          currency: "USD"
+        }
       },
       ru: {
         currency: {
           style: "currency",
-          currency: "RUB",
-        },
+          currency: "RUB"
+        }
       },
       uz: {
         currency: {
           style: "currency",
           currency: "UZS",
-          currencyDisplay: "symbol",
-        },
-      },
-    },
+          currencyDisplay: "symbol"
+        }
+      }
+    }
   }
 ) {
   const i18n = createI18n(options);
@@ -128,7 +125,7 @@ export function setupI18n(
   return i18n;
 }
 
-export function setI18nLanguage(i18n: any, locale: any) {
+export function setI18nLanguage(i18n: any, locale: string) {
   if (i18n.mode === "legacy") {
     i18n.global.locale = locale;
   } else {

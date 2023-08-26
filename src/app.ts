@@ -1,8 +1,8 @@
 import { createPinia } from "pinia";
 import { createSSRApp, createApp } from "vue";
 import App from "./App.vue";
-import createRouter from "./router/index";
-import { i18n } from "./i18n";
+import createRouter from "@/app/config/router/index";
+import { i18n } from "@/app/config/i18n/index";
 import type { Ii18nRoute } from "./../types.d";
 
 export function buildApp() {

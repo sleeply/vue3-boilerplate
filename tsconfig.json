@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "~/*": ["./*"],
       "@core/*": ["src/*"],
       "@/app/*": ["src/app/*"],
       "@/pages/*": ["src/pages/*"],
@@ -26,8 +27,10 @@
       "@/components/*": ["./src/components/*"],
       "@/composables/*": ["./src/composables/*"],
       "@/utils/*": ["./src/utils/*"],
-    }
+    },
+    "types": ["node", "vite/client"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/main-server.js"],
+  "exclude": ["node_modules"],
+  
 }
