@@ -109,7 +109,7 @@ export default defineConfig(({ mode, command, ssrBuild }) => {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
         vue:
-          process.env.NODE_ENV === "production"
+          process.env.VITE_NODE_ENV === "production"
             ? "vue"
             : "vue/dist/vue.esm-bundler.js",
       },

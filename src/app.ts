@@ -4,10 +4,9 @@ import App from "./App.vue";
 import createRouter from "./router/index";
 import { i18n } from "./i18n";
 import type { Ii18nRoute } from "./../types.d";
-import type { LocationQueryRaw, RouteParams } from "vue-router";
 
 export function buildApp() {
-  const app = import.meta.env.SSR ? createSSRApp(App) : createApp(App);
+  const app = process.env.VITE_SSR ? createSSRApp(App) : createApp(App);
   const pinia = createPinia();
   const router = createRouter();
 

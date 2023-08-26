@@ -13,7 +13,7 @@ const { i18n, switchLanguage, SUPPORT_LOCALES } = useLanguage();
       :key="index"
       @click="switchLanguage(lang)"
       :class="{
-        active: lang === i18n.global.locale.value,
+        active: lang === i18n.global.locale.value
       }"
     >
       {{ lang }}
@@ -22,8 +22,8 @@ const { i18n, switchLanguage, SUPPORT_LOCALES } = useLanguage();
 </template>
 
 <style lang="scss" scoped>
-button{
-  &.active{
+button {
+  &.active {
     background: black;
     color: lightblue;
   }

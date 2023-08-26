@@ -13,19 +13,15 @@ const isTest = process.env.VITEST;
 
 export async function createServer(
   root = process.cwd(),
-  isProd = process.env.NODE_ENV === "production",
+  isProd = process.env.VITE_NODE_ENV === "production",
   hmrPort
 ) {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const resolve = (p) => path.resolve(__dirname, p);
 
-  const indexProd = isProd
-    ? fs.readFileSync(resolve("./dist/client/index.html"), "utf-8")
-    : "";
+  const indexProd = isProd ? fs.readFileSync(resolve("./dist/client/index.html"), "utf-8") : "";
 
-  const manifest = isProd
-    ? fs.readFileSync(resolve("dist/client/ssr-manifest.json"), "utf-8")
-    : {};
+  const manifest = isProd ? fs.readFileSync(resolve("dist/client/ssr-manifest.json"), "utf-8") : {};
 
   const app = express();
 
@@ -47,13 +43,13 @@ export async function createServer(
           // During tests we edit the files too fast and sometimes chokidar
           // misses change events, so enforce polling for consistency
           usePolling: true,
-          interval: 100,
+          interval: 100
         },
         hmr: {
-          port: hmrPort,
-        },
+          port: hmrPort
+        }
       },
-      appType: "custom",
+      appType: "custom"
     });
     // use vite's connect instance as middleware
     app.use(vite.middlewares);
@@ -62,7 +58,7 @@ export async function createServer(
     app.use(
       "/",
       (await import("serve-static")).default(resolve("dist/client"), {
-        index: false,
+        index: false
       })
     );
   }
@@ -98,7 +94,7 @@ export async function createServer(
   return { app, vite, ip };
 }
 
-const port = process.env.PORT || 8080;
+const port = (process.env.VITE_PORT = 8000 || 8080);
 
 if (!isTest) {
   createServer().then(({ app, ip }) => {
